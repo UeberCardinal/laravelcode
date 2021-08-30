@@ -33,7 +33,7 @@
                 <div class="content">
                     <ul>
                         @foreach($popular_category as $category)
-                        <li><a href="#">{{$category->title}} ({{$category->posts->count()}})</a></li>
+                        <li><a href="{{route('categories.single', ['slug' => $category->slug])}}">{{$category->title}} ({{$category->posts_count}})</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -46,13 +46,9 @@
                 </div>
                 <div class="content">
                     <ul>
-                        <li><a href="#">Lifestyle</a></li>
-                        <li><a href="#">Creative</a></li>
-                        <li><a href="#">HTML5</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">PSD</a></li>
-                        <li><a href="#">Responsive</a></li>
+                        @foreach($tags as $tag)
+                        <li><a href="{{route('tags.single', ['slug' => $tag->slug])}}">{{$tag->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

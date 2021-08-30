@@ -289,6 +289,18 @@ header .navbar {
 
 }
 
+.owl-banner .item > img {
+    position: relative;
+    opacity: 0.6;
+
+}
+
+.owl-banner .item > img:hover {
+    position: relative;
+    opacity: 1;
+
+}
+
 
 
 .owl-banner .item .item-content {

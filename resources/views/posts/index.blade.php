@@ -10,18 +10,18 @@
             <div class="owl-banner owl-carousel">
                 @foreach($posts as $post)
                 <div style="background: #000;" class="item">
-                        <img style="opacity: 0.7" src="{{$post->getImage()}}" alt="">
+                        <img src="{{$post->getImage()}}" alt="">
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
                                 <span>{{$post->tag}}</span>
                             </div>
-                            <a href="post-details.html"><h4>{{$post->title}}</h4></a>
+                            <a href="{{route('posts.single', ['slug' => $post->slug])}}"><h4>{{$post->title}}</h4></a>
                             <ul class="post-info">
                                 <li><a href="#">Admin</a></li>
                                 <li><a href="#">{{$post->getPostDate()}}</a></li>
                                 <li><a href=""><i class="fa fa-eye"></i> {{$post->views}}</li></a>
-                                <li><a href="#">12 Comments</a></li>
+                                <li><a href="#">{{$post->comments()->count()}} Comments</a></li>
                             </ul>
                         </div>
                     </div>

@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
 Route::get('/categories/{slug}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.single');
 Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
+Route::post('/article/{slug}/comment', [PostController::class, 'comment'])->name('comment');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('/', [MainController::class, 'index'])->name('admin.index');
