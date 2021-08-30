@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title', 'Stand Blog :: Home' )
+
+
+
 @section('banner')
     <div class="main-banner header-text">
         <div class="container-fluid">
@@ -14,8 +18,9 @@
                             </div>
                             <a href="post-details.html"><h4>{{$post->title}}</h4></a>
                             <ul class="post-info">
-                                <li><a href="#">{{\Illuminate\Support\Facades\Auth::user()->name}}</a></li>
-                                <li><a href="#">{{$post->created_at}}</a></li>
+                                <li><a href="#">Admin</a></li>
+                                <li><a href="#">{{$post->getPostDate()}}</a></li>
+                                <li><a href=""><i class="fa fa-eye"></i> {{$post->views}}</li></a>
                                 <li><a href="#">12 Comments</a></li>
                             </ul>
                         </div>
@@ -39,11 +44,12 @@
                                 <img src="{{$post->getImage()}}" alt="">
                             </div>
                             <div class="down-content">
-                                <span>{{$post->category->title}}</span>
-                                <a href="post-details.html"><h4>{{$post->title}}</h4></a>
+                                <a href="{{route('categories.single', ['slug' => $post->category->slug])}}"><span>{{$post->category->title}}</span></a>
+                                <a href="{{route('posts.single', ['slug' => $post->slug])}}"><h4>{{$post->title}}</h4></a>
                                 <ul class="post-info">
                                     <li><a href="#">Admin</a></li>
-                                    <li><a href="#">{{$post->created_at}}</a></li>
+                                    <li><a href="">{{$post->getPostDate()}}</a></li>
+                                   <li><a href=""><i class="fa fa-eye"></i> {{$post->views}}</a></li>
                                     <li><a href="#">12 Comments</a></li>
                                 </ul>
                                 {!! $post->description !!}
@@ -51,9 +57,10 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <ul class="post-tags">
-                                                <li><i class="fa fa-tags"></i></li>
+                                                @if($post->tags->count())
 
-                                                @foreach($post->tags as $key => $tag)
+                                                <li><i class="fa fa-tags"></i></li>
+                                                    @foreach($post->tags as $key => $tag)
                                                     <li>
                                                         <a href="#">{{$tag->title}}</a>
                                                         @if($key + 1 != count($post->tags))
@@ -61,7 +68,7 @@
                                                     </li>
                                                     @endif
                                                 @endforeach
-
+                                                    @endif
                                             </ul>
                                         </div>
                                         <div class="col-6">

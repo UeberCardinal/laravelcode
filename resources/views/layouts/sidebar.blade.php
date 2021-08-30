@@ -10,22 +10,17 @@
         <div class="col-lg-12">
             <div class="sidebar-item recent-posts">
                 <div class="sidebar-heading">
-                    <h2>Recent Posts</h2>
+                    <h2>Popular Posts</h2>
                 </div>
                 <div class="content">
                     <ul>
-                        <li><a href="post-details.html">
-                                <h5>Vestibulum id turpis porttitor sapien facilisis scelerisque</h5>
-                                <span>May 31, 2020</span>
+                        @foreach($popular_posts as $popular_post)
+                        <li><a href="{{route('posts.single', ['slug' => $popular_post->slug])}}">
+                                <h5>{{$popular_post->title}}</h5>
+                                <span>{{$popular_post->getPostDate()}}</span>
+
                             </a></li>
-                        <li><a href="post-details.html">
-                                <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                                <span>May 28, 2020</span>
-                            </a></li>
-                        <li><a href="post-details.html">
-                                <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
-                                <span>May 14, 2020</span>
-                            </a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -37,12 +32,9 @@
                 </div>
                 <div class="content">
                     <ul>
-                        <li><a href="#">- Nature Lifestyle</a></li>
-                        <li><a href="#">- Awesome Layouts</a></li>
-                        <li><a href="#">- Creative Ideas</a></li>
-                        <li><a href="#">- Responsive Templates</a></li>
-                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-                        <li><a href="#">- Creative &amp; Unique</a></li>
+                        @foreach($popular_category as $category)
+                        <li><a href="#">{{$category->title}} ({{$category->posts->count()}})</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
