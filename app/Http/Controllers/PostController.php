@@ -12,10 +12,8 @@ class PostController extends Controller
     public function index()
     {
 
-        $i = 0;
-        $posts = Post::with('category', 'tags')->orderBy('id', 'desc')->get();
 
-        return view('posts.index', compact('posts', 'i'));
+        return view('posts.index');
     }
 
     public function show($slug)
@@ -30,11 +28,17 @@ class PostController extends Controller
 
     public function comment(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'comment' => 'required',
+        ]);
         $post = Post::where('slug', $request->slug)->pluck('id');
         $post_id = ['post_id' => $post[0]];
         $arr = $request->all() + $post_id;
         $comm = Comment::create($arr);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Комментарий добавлен');
 
     }
 }

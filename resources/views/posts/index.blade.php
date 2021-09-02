@@ -1,3 +1,4 @@
+
 @extends('layouts.layout')
 
 @section('title', 'Stand Blog :: Home' )
@@ -5,10 +6,12 @@
 
 
 @section('banner')
+
     <div class="main-banner header-text">
         <div class="container-fluid">
             <div class="owl-banner owl-carousel">
-                @foreach($posts as $post)
+
+                @foreach($postjquery as $post)
                 <div style="background: #000;" class="item">
                         <img src="{{$post->getImage()}}" alt="">
                     <div class="item-content">
@@ -21,7 +24,7 @@
                                 <li><a href="#">Admin</a></li>
                                 <li><a href="#">{{$post->getPostDate()}}</a></li>
                                 <li><a href=""><i class="fa fa-eye"></i> {{$post->views}}</li></a>
-                                <li><a href="#">{{$post->comments()->count()}} Comments</a></li>
+                                <li><a href="#"><i class="fa fa-comment"></i> {{$post->comments->count()}} </a></li>
                             </ul>
                         </div>
                     </div>
@@ -34,6 +37,7 @@
 @endsection
 
 @section('content')
+
     <div class="col-lg-8">
         <div class="all-blog-posts">
             <div class="row">
@@ -50,7 +54,7 @@
                                     <li><a href="#">Admin</a></li>
                                     <li><a href="">{{$post->getPostDate()}}</a></li>
                                    <li><a href=""><i class="fa fa-eye"></i> {{$post->views}}</a></li>
-                                    <li><a href="#">12 Comments</a></li>
+                                    <li><a href="#"><i class="fa fa-comment"></i> {{$post->comments->count()}} </a></li>
                                 </ul>
                                 {!! $post->description !!}
                                 <div class="post-options">
@@ -84,12 +88,13 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-lg-12">
-                    <div class="main-button">
-                        <a href="blog.html">View All Posts</a>
-                    </div>
-                </div>
+
+                    <nav aria-label="Page navigation">
+
+                        {{$posts->links('vendor.pagination.bootstrap-4')}}
+                    </nav>
             </div>
         </div>
     </div>
+
 @endsection

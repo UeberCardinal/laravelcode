@@ -17,7 +17,7 @@
                         @foreach($popular_posts as $popular_post)
                         <li><a href="{{route('posts.single', ['slug' => $popular_post->slug])}}">
                                 <h5>{{$popular_post->title}}</h5>
-                                <span>{{$popular_post->getPostDate()}}</span>
+                                <span>{{$popular_post->getPostDate()}} | <i class="fa fa-eye"></i> {{$popular_post->views}}</span>
 
                             </a></li>
                         @endforeach
@@ -28,7 +28,7 @@
         <div class="col-lg-12">
             <div class="sidebar-item categories">
                 <div class="sidebar-heading">
-                    <h2>Categories</h2>
+                    <h2>Popular Categories</h2>
                 </div>
                 <div class="content">
                     <ul>

@@ -17,6 +17,29 @@
     </div>
 @endsection
 @section('content')
+    <div class="col-md-12">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-unstyled">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
 
     <div class="col-lg-8">
         <div class="all-blog-posts">
@@ -32,7 +55,7 @@
                             <ul class="post-info">
                                 <li><a href="#">Admin</a></li>
                                 <li><a href="#">{{$post->getPostDate()}}</a></li>
-                                <li><a href="#">{{$post->comments()->count()}} Comments</a></li>
+                                <li><a href="#comments"><i class="fa fa-comment"></i> {{$post->comments()->count()}} </a></li>
                                 <li> <a href="#"><i class="fa fa-eye"> {{$post->views}}</i></a></li>
                             </ul>
                            <div>{!! $post->content !!} </div>
@@ -66,7 +89,9 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
+                    <a name="comments"></a>
                     <div class="sidebar-item comments">
+
                         <div class="sidebar-heading">
                             <h2>{{$comments->count()}} comments</h2>
                         </div>

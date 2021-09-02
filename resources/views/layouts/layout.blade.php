@@ -33,13 +33,17 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Login
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
+                    @if(\Illuminate\Support\Facades\Auth::check()
+            and \Illuminate\Support\Facades\Auth::user()->is_admin )
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.index')}}">To Admin Panel</a>
+                        </li>
+
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home
                             <span class="sr-only">(current)</span>
@@ -51,12 +55,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="blog.html">Blog Entries</a>
                     </li>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('logout')}}">Logout
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    @else
                     <li class="nav-item">
-                        <a class="nav-link" href="post-details.html">Post Details</a>
+                        <a class="nav-link" href="{{route('login')}}">Login
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
+                    @endif
+                    @if(!\Illuminate\Support\Facades\Auth::check())
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="{{route('register.create')}}">Register</a>
                     </li>
+                        @endif
                 </ul>
             </div>
         </div>
@@ -72,6 +88,7 @@
     <div class="container">
         <div class="row">
             @yield('content')
+
             <div class="col-lg-4">
              @include('layouts.sidebar')
             </div>

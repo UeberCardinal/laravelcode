@@ -38,7 +38,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    Start creating your amazing application!
+                    <div><b>Категорий</b>: {{\App\Models\Category::all()->count()}}</div>
+                    <div><b>Тегов</b>: {{\App\Models\Tag::all()->count()}}</div>
+                    <div><b>Постов</b>: {{\App\Models\Post::all()->count()}}</div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
