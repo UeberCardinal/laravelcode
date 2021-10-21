@@ -41,4 +41,6 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Комментарий добавлен');
 
     }
+
+
 }
