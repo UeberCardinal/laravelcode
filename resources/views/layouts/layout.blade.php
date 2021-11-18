@@ -52,9 +52,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog Entries</a>
-                    </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('logout')}}">Logout

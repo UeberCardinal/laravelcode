@@ -11,14 +11,11 @@ class PostController extends Controller
 {
     public function index()
     {
-
-
         return view('posts.index');
     }
 
     public function show($slug)
     {
-
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->increment('views');
         $post->update();
@@ -41,6 +38,8 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Комментарий добавлен');
 
     }
+
+
 
 
 }
